@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneWinMonitor.exe" size="27048">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OneWinMonitor.exe" size="31144">
       <assemblyIdentity name="OneWinMonitor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>392k+rHo8wltSTYbbukHsdlQ1fiFgrjErxF3nRI+1Vk=</dsig:DigestValue>
+        <dsig:DigestValue>M+o4+dZik8I5U2xXv+vFrfBicEDXhjJu+h1UKQrAhr8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

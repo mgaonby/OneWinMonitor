@@ -34,4 +34,3 @@ C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonit
 C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.CopyComplete
 C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.exe
 C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.pdb
-C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csprojAssemblyReference.cache

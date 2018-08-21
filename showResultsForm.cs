@@ -25,6 +25,7 @@ namespace OneWinMonitor
         int[,] daysCount;
         string connectionString;
         string procedureName;
+        string thisArea;
         public showResultsForm()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace OneWinMonitor
             data = new List<DateTime>();
             daysAverage = new int[7];
             daysCount = new int[18, 6];
+            thisArea = area;
             for (int i = 0; i < daysCount.GetLength(0); i++)
             {
                 for (int j = 0; j < daysCount.GetLength(1); j++)
@@ -190,7 +192,7 @@ namespace OneWinMonitor
                 try
                 {
                     connection.Open();
-                    string sqlExpression = String.Format("SELECT GettingDate FROM Registration WHERE GettingDate >=CONVERT(date, '{0}-{1}-{2}') and GettingDate <= CONVERT(date, '{3}-{4}-{5}') {6}", beginDate.Year, beginDate.Month, beginDate.Day, endDate.Year, endDate.Month, endDate.Day, 
+                    string sqlExpression = String.Format("SELECT GettingDate FROM Registration WHERE GettingDate >=CONVERT(date, '{0}-{1}-{2} 08:00:00.000') and GettingDate <= CONVERT(date, '{3}-{4}-{5}') {6}", beginDate.Year, beginDate.Month, beginDate.Day, endDate.Year, endDate.Month, endDate.Day, 
                         String.IsNullOrEmpty(procedureName) ? "" : String.Format("and Number='{0}'", procedureName));
                     SqlCommand command = new SqlCommand(sqlExpression, connection);
                     SqlDataReader reader = command.ExecuteReader();
@@ -210,6 +212,11 @@ namespace OneWinMonitor
                 {
                     connection.Close();
                 }
+            }
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (data[i].Hour < 8)
+                    data[i] = data[i].AddHours(8 - data[i].Hour);
             }
         }
         void InsertExcel(string filename)
@@ -340,26 +347,81 @@ namespace OneWinMonitor
                         break;
                     }
                 }
-                string[] paramsHeaderArray = new string[7];
+                string[] paramsHeaderArray = new string[15];
                 paramsHeaderArray[0] = "";
                 paramsHeaderArray[1] = "Понедельник";
-                paramsHeaderArray[2] = "Вторник";
-                paramsHeaderArray[3] = "Среда";
-                paramsHeaderArray[4] = "Четверг";
-                paramsHeaderArray[5] = "Пятница";
-                paramsHeaderArray[6] = "Суббота";
+                paramsHeaderArray[2] = "";
+                paramsHeaderArray[3] = "Вторник";
+                paramsHeaderArray[4] = "";
+                paramsHeaderArray[5] = "Среда";
+                paramsHeaderArray[6] = "";
+                paramsHeaderArray[7] = "Четверг";
+                paramsHeaderArray[8] = "";
+                paramsHeaderArray[9] = "Пятница";
+                paramsHeaderArray[10] = "";
+                paramsHeaderArray[11] = "Суббота";
+                paramsHeaderArray[12] = "";
+                paramsHeaderArray[13] = "Средняя загрузка службы в течении дня за промежуток времени";
+                paramsHeaderArray[14] = "";
+                TimeSpan ts = endDate - beginDate;
+                double weeks = ts.TotalDays / 7;
                 sheetData.AppendChild(ConstructRow(2, paramsHeaderArray));
-
+                int totalCount = 0;
+                int[,] totalArray = new int[12 + startRowIndex, daysCount.GetLength(1) + 1];
                 for (int i = startRowIndex; i < 12 + startRowIndex; i++)
                 {
-                    string[] paramsArray = new string[daysCount.GetLength(1) + 1];
+                    string[] newParamsArray = new string[15];
+                    string[] paramsArray = new string[daysCount.GetLength(1) + 3];
                     paramsArray[0] = resultDataGrid.Rows[i-startRowIndex].HeaderCell.Value.ToString();
+                    totalCount = 0;
+                    int totalWorkerOnWeek = 0;
                     for (int j = 0; j < daysCount.GetLength(1); j++)
                     {
+                        try
+                        {
+                            paramsArray[j + 1] = daysCount[i, j].ToString();
+                            totalArray[i, j] = daysCount[i, j];
+                            totalCount += daysCount[i, j];
+                            totalWorkerOnWeek += returnAreaGrafik()[i - startRowIndex, j ];
+                        }
+                        catch (Exception eq)
+                        {
 
-                        paramsArray[j + 1] = daysCount[i,j].ToString();
+                        }
+
                     }
-                    sheetData.AppendChild(ConstructRow(2, paramsArray));
+                    
+                    newParamsArray[0] = resultDataGrid.Rows[i - startRowIndex].HeaderCell.Value.ToString();
+                    newParamsArray[1] = paramsArray[1];
+                    newParamsArray[2] = String.Format("{0:f1}", (double.Parse(paramsArray[1]) / (weeks) / returnAreaGrafik()[i - startRowIndex, 0]));//    String.Format("={0}{1}/{2}/{3}", ExcelIntToCharCollums(2), (i - startRowIndex + 2), ts.TotalDays / 7, zav[i - startRowIndex, 0]);
+                    newParamsArray[3] = paramsArray[2];
+                    newParamsArray[4] = String.Format("{0:f1}", (double.Parse(paramsArray[2]) / (weeks) / returnAreaGrafik()[i - startRowIndex, 1]));//String.Format("={0}{1}/{2}/{3}", ExcelIntToCharCollums(4), (i - startRowIndex + 2), ts.TotalDays / 7, zav[i - startRowIndex, 1]);
+                    newParamsArray[5] = paramsArray[3];
+                    newParamsArray[6] = String.Format("{0:f1}", (double.Parse(paramsArray[3]) /(weeks) / returnAreaGrafik()[i - startRowIndex, 2]));//String.Format("={0}{1}/{2}/{3}", ExcelIntToCharCollums(6), (i - startRowIndex + 2), ts.TotalDays / 7, zav[i - startRowIndex, 2]);
+                    newParamsArray[7] = paramsArray[4];
+                    newParamsArray[8] = String.Format("{0:f1}", (double.Parse(paramsArray[4]) / (weeks) / returnAreaGrafik()[i - startRowIndex, 3]));//String.Format("={0}{1}/{2}/{3}", ExcelIntToCharCollums(8), (i - startRowIndex + 2), ts.TotalDays / 7, zav[i - startRowIndex, 3]);
+                    newParamsArray[9] = paramsArray[5];
+                    newParamsArray[10] = String.Format("{0:f1}", (double.Parse(paramsArray[5]) /( weeks) / returnAreaGrafik()[i - startRowIndex, 4])); //String.Format("={0}{1}/{2}/{3}", ExcelIntToCharCollums(10), (i - startRowIndex + 2), ts.TotalDays / 7, zav[i - startRowIndex, 4]);
+                    newParamsArray[11] = paramsArray[6];
+                    newParamsArray[12] = "";// (double.Parse(paramsArray[6]) / ts.TotalDays / 7 / zav[i - startRowIndex, 5]).ToString();// String.Format("={0}{1}/{2}/{3}", ExcelIntToCharCollums(12), (i - startRowIndex + 2), ts.TotalDays / 7, zav[i - startRowIndex, 5]);
+                    newParamsArray[13] = Math.Round((double)(totalCount / (ts.TotalDays / 7))).ToString();
+                    newParamsArray[14] = String.Format("{0:f1}", Math.Round((double)(totalCount / weeks))/totalWorkerOnWeek);
+
+                    //for (int j = 0; j < paramsArray.Length; j++)
+                    //{
+                    //    if (j % 2 == 0 && j > 1)
+                    //    {
+                    //        newParamsArray[j + 1] = String.Format("={0}{1}/{2}/{3}", ExcelIntToCharCollums(j), (i - startRowIndex + 2), ts.TotalDays / 7, zav[i - startRowIndex, j]);
+                    //    }
+                    //    else
+                    //    {
+                    //        newParamsArray[j + 1] = paramsArray[]
+                    //    }
+
+                    //}
+                    paramsArray[paramsArray.Length-2] = Math.Round((double)(totalCount/(ts.TotalDays/7))).ToString();
+                    paramsArray[paramsArray.Length - 1] = (ts.TotalDays / 7).ToString();
+                    sheetData.AppendChild(ConstructRow(2, newParamsArray));
                 }
                // sheetData.AppendChild(ConstructRow(0, "Итого:", data.Count.ToString()));
                 worksheetPart.Worksheet.Save();
@@ -622,5 +684,174 @@ namespace OneWinMonitor
             }
             return null;
         }
+        int[,] returnAreaGrafik()
+        {
+            switch (thisArea)
+            {
+
+                case "zav": return zav; 
+                case "len": return len; 
+                case "mingor": return mingor; 
+                case "mos": return mos; 
+                case "okt": return okt; 
+                case "par": return per;
+                case "per": return par; 
+                case "sov": return sov;
+                case "cen": return cen; 
+                case "frun": return frun;
+                default: return zav;
+            }
+        }
+      
+        int[,] per = //Готово
+{
+            {1,1,1,1,1,0 },//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 6,6,6,6,6,2},//11
+            { 6,6,6,6,6,2},//12
+            { 2,2,2,2,2,2},//13
+            { 4,4,4,4,4,0},//14
+            { 6,6,6,6,6,0},//15
+            { 5,5,5,5,5,0},//16
+            { 5,5,5,5,5,0},//17
+            { 2,2,2,2,2,0},//18
+            { 2,2,2,2,2,0},//19
+        };
+        int[,] par = //Готово
+{
+            { 2,2,2,2,2,0},//8
+            { 3,3,3,3,3,1},//9
+            { 3,3,3,3,3,1},//10
+            { 5,5,5,5,5,1},//11
+            { 5,5,5,5,5,1},//12
+            { 2,2,2,2,2,1},//13
+            { 3,3,3,3,3,0},//14
+            { 5,5,5,5,5,0},//15
+            { 5,5,5,5,5,0},//16
+            { 5,5,5,5,5,0},//17
+            { 2,2,2,2,2,0},//18
+            { 2,2,2,2,2,0},//19
+        };
+        int[,] len = //Готово
+{
+            { 3,3,3,3,3,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 7,7,7,7,7,2},//11
+            { 4,5,5,5,4,2},//12
+            { 4,5,5,5,4,2},//13
+            { 5,6,6,6,5,0},//14
+            { 4,5,5,5,4,0},//15
+            { 6,7,7,7,6,0},//16
+            { 4,4,4,4,4,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
+        int[,] zav = //Готово
+        {
+            { 1,1,1,1,1,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 8,8,8,8,8,2},//11
+            { 7,7,7,7,7,2},//12
+            { 3,3,3,3,3,2},//13
+            { 5,5,5,5,5,0},//14
+            { 8,8,8,8,8,0},//15
+            { 8,8,8,8,8,0},//16
+            { 7,7,7,7,7,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
+        int[,] mos =
+{
+              { 1,1,1,1,1,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 8,8,8,8,8,2},//11
+            { 7,7,7,7,7,2},//12
+            { 3,3,3,3,3,2},//13
+            { 5,5,5,5,5,0},//14
+            { 8,8,8,8,8,0},//15
+            { 8,8,8,8,8,0},//16
+            { 7,7,7,7,7,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
+        int[,] cen =
+       {
+            { 1,1,1,1,1,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 8,8,8,8,8,2},//11
+            { 7,7,7,7,7,2},//12
+            { 3,3,3,3,3,2},//13
+            { 5,5,5,5,5,0},//14
+            { 8,8,8,8,8,0},//15
+            { 8,8,8,8,8,0},//16
+            { 7,7,7,7,7,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
+        int[,] mingor =
+       {
+            { 1,1,1,1,1,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 8,8,8,8,8,2},//11
+            { 7,7,7,7,7,2},//12
+            { 3,3,3,3,3,2},//13
+            { 5,5,5,5,5,0},//14
+            { 8,8,8,8,8,0},//15
+            { 8,8,8,8,8,0},//16
+            { 7,7,7,7,7,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
+        int[,] sov =
+       {
+            { 1,1,1,1,1,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 8,8,8,8,8,2},//11
+            { 7,7,7,7,7,2},//12
+            { 3,3,3,3,3,2},//13
+            { 5,5,5,5,5,0},//14
+            { 8,8,8,8,8,0},//15
+            { 8,8,8,8,8,0},//16
+            { 7,7,7,7,7,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
+        int[,] okt =
+       {
+            { 1,1,1,1,1,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 8,8,8,8,8,2},//11
+            { 7,7,7,7,7,2},//12
+            { 3,3,3,3,3,2},//13
+            { 5,5,5,5,5,0},//14
+            { 8,8,8,8,8,0},//15
+            { 8,8,8,8,8,0},//16
+            { 7,7,7,7,7,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
+        int[,] frun =
+       {
+            { 1,1,1,1,1,0},//8
+            { 4,4,4,4,4,2},//9
+            { 4,4,4,4,4,2},//10
+            { 8,8,8,8,8,2},//11
+            { 7,7,7,7,7,2},//12
+            { 3,3,3,3,3,2},//13
+            { 5,5,5,5,5,0},//14
+            { 8,8,8,8,8,0},//15
+            { 8,8,8,8,8,0},//16
+            { 7,7,7,7,7,0},//17
+            { 3,3,3,3,3,0},//18
+            { 3,3,3,3,3,0},//19
+        };
     }
 }
