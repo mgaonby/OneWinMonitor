@@ -1,0 +1,37 @@
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.exe.config
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.exe
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.pdb
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.selectAreaForm.resources
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.Properties.Resources.resources
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.showResultsForm.resources
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.GenerateResource.Cache
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.exe
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.pdb
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csprojResolveAssemblyReference.cache
+C:\Users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.ResolveComReference.cache
+C:\Users\panysh\Documents\Visual Studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.CoreCompileInputs.cache
+C:\Users\panysh\Documents\Visual Studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.exe.manifest
+C:\Users\panysh\Documents\Visual Studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.application
+C:\Users\panysh\Documents\Visual Studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.exe.manifest
+C:\Users\panysh\Documents\Visual Studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.application
+C:\Users\panysh\Documents\Visual Studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Release\DocumentFormat.OpenXml.dll
+C:\Users\panysh\Documents\Visual Studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Release\DocumentFormat.OpenXml.xml
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.exe.config
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.exe.manifest
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.application
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.exe
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\bin\Release\OneWinMonitor.pdb
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\bin\Release\DocumentFormat.OpenXml.dll
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\bin\Release\DocumentFormat.OpenXml.xml
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.ResolveComReference.cache
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.selectAreaForm.resources
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.Properties.Resources.resources
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.showResultsForm.resources
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.GenerateResource.cache
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.CoreCompileInputs.cache
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.exe.manifest
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.application
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csproj.CopyComplete
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.exe
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.pdb
+C:\Users\panysh\source\repos\OneWinMonitor\OneWinMonitor\obj\Release\OneWinMonitor.csprojAssemblyReference.cache

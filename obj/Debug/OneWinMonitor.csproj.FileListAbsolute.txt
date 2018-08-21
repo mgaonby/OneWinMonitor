@@ -1,0 +1,14 @@
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Debug\OneWinMonitor.exe.config
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Debug\OneWinMonitor.exe
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Debug\OneWinMonitor.pdb
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Debug\EntityFramework.dll
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Debug\EntityFramework.xml
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Debug\OneWinMonitor.csprojResolveAssemblyReference.cache
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Debug\OneWinMonitor.selectAreaForm.resources
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Debug\OneWinMonitor.Properties.Resources.resources
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Debug\OneWinMonitor.showResultsForm.resources
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Debug\OneWinMonitor.csproj.GenerateResource.Cache
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Debug\OneWinMonitor.exe
+c:\users\panysh\documents\visual studio 2013\Projects\OneWinMonitor\OneWinMonitor\obj\Debug\OneWinMonitor.pdb
